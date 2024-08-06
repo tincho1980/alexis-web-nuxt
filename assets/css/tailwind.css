@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .font-montserrat {
+        font-family: "Montserrat", sans-serif;
+    }
+}
+
+body {
+    @apply bg-primary;
+    @apply text-white;
+    @apply font-montserrat;
+    @apply w-auto;
+}
+
+.btn {
+    @apply bg-danger;
+    @apply text-white;
+    @apply px-4;
+    @apply py-2;
+    @apply rounded;
+    @apply w-40;
+    @apply cursor-pointer;
+    @apply text-center;
+}
+
+.btn:hover {
+    background-color: rgba(99, 1, 2, 0.5);
+}
+
+.btn-light {
+    @apply bg-white;
+    @apply text-black;
+    @apply px-4;
+    @apply py-2;
+    @apply rounded;
+    @apply w-40;
+    @apply cursor-pointer;
+    @apply text-center;
+}
+
+.btn-light:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.btn-dark {
+    @apply bg-black;
+    @apply text-white;
+    @apply px-4;
+    @apply py-2;
+    @apply rounded;
+    @apply w-40;
+    @apply cursor-pointer;
+    @apply text-center;
+}
+
+.btn-dark:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+    @apply text-4xl;
+    @apply font-bold;
+}
+
+h2 {
+    @apply text-3xl;
+    @apply font-semibold;
+}
+
+h3 {
+    @apply text-2xl;
+    @apply font-semibold;
+}
+
+p {
+    @apply text-xl;
+    @apply font-normal;
+}
+
+label {
+    @apply text-base;
+    @apply font-normal;
+}
+
+caption {
+    @apply text-xs;
+    @apply font-normal;
+}
