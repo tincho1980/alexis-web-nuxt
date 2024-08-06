@@ -1,1 +1,5 @@
-node_modules
+# Nuxt.js build directory
+.nuxt
+
+# Dependency directories
+node_modules/
