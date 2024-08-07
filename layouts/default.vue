@@ -11,7 +11,7 @@
                     </li>
                     <li class="flex align-middle"><NuxtLink to="/galeria" class="my-auto px-4">Galería</NuxtLink></li>
                     <li class="flex align-middle"><NuxtLink to="/servicios" class="my-auto px-4">Servicios</NuxtLink></li>
-                    <li class="flex align-middle"><NuxtLink to="/contacto" class="my-auto px-4">Constacto</NuxtLink></li>
+                    <li class="flex align-middle"><NuxtLink to="/contacto" class="my-auto px-4">Contacto</NuxtLink></li>
                 </ul>
             </nav>
         </header>

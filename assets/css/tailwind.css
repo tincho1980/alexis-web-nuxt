@@ -91,3 +91,12 @@ caption {
     @apply text-xs;
     @apply font-normal;
 }
+
+input,
+textarea {
+    @apply bg-secondary;
+    @apply text-white;
+    @apply px-6;
+    @apply cursor-pointer;
+    @apply rounded;
+}
