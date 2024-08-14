@@ -1,12 +1,21 @@
 <template>
-    <div>
-        <h2>Contacto</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia quas error ratione asperiores unde accusamus dolore obcaecati at nisi non!</p>
+    <div class="overflow-x-hidden">
+        <contactMe />
     </div>
 </template>
 
 <script>
-export default {};
+import contactMe from "@/components/homePage/contactMe.vue";
+
+export default {
+    components: {
+        contactMe,
+    },
+};
 </script>
 
-<style></style>
+<style scoped>
+.screen {
+    height: calc(100vh - 80px);
+}
+</style>
