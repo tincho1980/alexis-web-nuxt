@@ -6,9 +6,6 @@
 
 <script>
 import contactMe from "@/components/homePage/contactMe.vue";
-definePageMeta({
-    layout: "contact-layout",
-});
 
 export default {
     components: {

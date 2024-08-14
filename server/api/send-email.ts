@@ -4,7 +4,18 @@ import nodemailer from "nodemailer";
 
 export default defineEventHandler(async (event) => {
     const body = await readBody(event);
-    console.log(process.env.EMAIL_PASS);
+
+    // Función para formatear la fecha
+    function formatDate(date: Date) {
+        return date.toLocaleString("es-ES", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+        });
+    }
+
     // Configura el transportador de nodemailer
     const transporter = nodemailer.createTransport({
         service: "gmail", // o el servicio que uses
@@ -19,13 +30,24 @@ export default defineEventHandler(async (event) => {
 
     // Configura el email
     const mailOptions = {
-        from: body.email,
+        from: process.env.EMAIL,
         to: process.env.EMAIL,
         subject: "Mensaje de la web de Alexis Salerno",
         text: `
           Este mensaje fue dejado en la web de Alexis Salerno:
           Mensaje enviado por: ${body.name}
           Mensaje: ${body.message}
+        `,
+        html: `
+          <div style="font-family: Arial, sans-serif; line-height: 1.6;">
+            <h2 style="color: #333;">Mensaje de la web de Alexis Salerno</h2>
+            <p><strong>Mensaje enviado por:</strong> ${body.name}</p>
+            <p><strong>Email:</strong> ${body.email}</p>
+            <p><strong>Mensaje:</strong></p>
+            <p>${body.message}</p>
+            <br>
+            <p>Este mensaje fue dejado en la web de Alexis Salerno el ${formatDate(new Date())}.</p>
+          </div>
         `,
     };
 

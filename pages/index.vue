@@ -33,4 +33,10 @@ export default {
     background-position: center;
     height: calc(100vh - 80px);
 }
+
+@media (max-width: 768px) {
+    .hero {
+        height: calc(100vh - 50px);
+    }
+}
 </style>
