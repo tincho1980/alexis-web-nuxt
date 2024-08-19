@@ -4,14 +4,18 @@
         <customTitle title="Galería" />
         <SelectedButtons @selected="selectPortfolio" :startWith="startWith" />
 
-        <div class="mx-2 md:mx-16">
-            <CarrouselComponent :data="photos" />
+        <div>
+            <div class="mx-2 md:mx-16 border-b-2 my-4 pb-4" v-for="(event, i) of selectedEvents" :key="i">
+                <h3 class="text-red-200">{{ event.title }}</h3>
+                <p class="text-sm m-4">{{ event.description }}</p>
+                <CarrouselComponent :data="event.fotos" @showPhoto="showPhoto" />
 
-            <!-- <div class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-3 w-auto mx-auto space-y-3 p-6 bg-white">
-                <div class="break-inside-avoid" v-for="photo in selectedPortfolio" :key="photo.id">
-                    <img class="h-auto rounded-lg" :src="photo.url" :alt="photo.name" @click="showPhoto(photo.url)" />
-                </div>
-            </div> -->
+                <!-- <div class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-3 w-auto mx-auto space-y-3 p-6 bg-white">
+                    <div class="break-inside-avoid" v-for="photo in selectedEvents" :key="photo.id">
+                        <img class="h-auto rounded-lg" :src="photo.url" :alt="photo.name" @click="showPhoto(photo.url)" />
+                    </div>
+                </div> -->
+            </div>
         </div>
     </div>
 </template>
@@ -31,27 +35,32 @@ export default {
     },
     data() {
         return {
-            selectedPortfolio: null,
-            photos: galerias.bandas[1].fotos,
+            selectedEvents: null,
+            events: galerias.bandas[1].fotos,
+            photoUrl: null,
             startWith: "bandas",
         };
     },
     methods: {
-        selectPortfolio(id) {
-            this.selectedPortfolio = galerias[id];
+        selectPortfolio(type) {
+            this.selectedEvents = galerias[type];
         },
-        showPhoto(url) {
-            this.photoUrl = url;
+        showPhoto(slide) {
+            this.photoUrl = slide.download_url;
         },
         closeModal() {
             this.photoUrl = null;
         },
     },
     beforeMount() {
-        if (this.$route.query.startWith) {
-            this.startWith = this.$route.query.startWith;
+        const startWith = this.$route.query.startWith;
+        if (startWith) {
+            this.startWith = startWith;
+            this.selectPortfolio(startWith);
+        } else {
+            this.startWith = "bandas";
+            this.selectPortfolio("bandas");
         }
-        this.selectPortfolio(this.startWith);
     },
 };
 </script>

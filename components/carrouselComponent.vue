@@ -1,20 +1,24 @@
 <template>
-    <Carousel :items-to-show="2.5" :wrap-around="true">
-        <Slide v-for="slide in data" :key="slide">
-            <div class="carousel__item">
-                <img :src="slide.download_url" alt="" />
-            </div>
-        </Slide>
+    <client-only>
+        <Carousel :items-to-show="itemsQ" :wrap-around="true" :snapAlign="'start'">
+            <Slide v-for="slide in data" :key="slide">
+                <div class="carousel__item cursor-pointer" @click="handleClickPhoto(slide)">
+                    <img :src="slide.download_url" alt="" />
+                </div>
+            </Slide>
 
-        <template #addons>
-            <Navigation />
-        </template>
-    </Carousel>
+            <template #addons>
+                <Navigation />
+                <Pagination />
+            </template>
+        </Carousel>
+    </client-only>
 </template>
 
 <script>
-import { Carousel, Navigation, Slide } from "vue3-carousel";
+import { Carousel, Navigation, Slide, Pagination } from "vue3-carousel/dist/carousel.es.js";
 import "vue3-carousel/dist/carousel.css";
+
 export default {
     props: {
         data: {
@@ -22,15 +26,17 @@ export default {
             required: true,
         },
     },
+
     components: {
         Carousel,
         Navigation,
         Slide,
+        Pagination,
     },
     data() {
         return {
+            itemsQ: 3.5,
             settings: {
-                itemsToShow: 1,
                 snapAlign: "center",
             },
             // breakpoints are mobile first
@@ -49,29 +55,22 @@ export default {
             },
         };
     },
+    methods: {
+        handleClickPhoto(slide) {
+            this.$emit("showPhoto", slide);
+        },
+        handleResize() {
+            this.itemsQ = window.innerWidth < 768 ? 1 : 3.5;
+        },
+    },
+    mounted() {
+        this.itemsQ = window.innerWidth < 768 ? 1 : 3.5;
+        window.addEventListener("resize", this.handleResize);
+    },
+    beforeDestroy() {
+        window.removeEventListener("resize", this.handleResize);
+    },
 };
 </script>
 
-<style scoped>
-.carousel__item {
-    min-height: 200px;
-    width: 100%;
-    background-color: var(--vc-clr-primary);
-    color: var(--vc-clr-white);
-    font-size: 20px;
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.carousel__slide {
-    padding: 10px;
-}
-
-.carousel__prev,
-.carousel__next {
-    box-sizing: content-box;
-    border: 5px solid white;
-}
-</style>
+<style scoped></style>

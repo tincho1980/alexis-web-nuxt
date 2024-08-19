@@ -17,12 +17,12 @@
             <nav class="flex justify-between md:hidden">
                 <div class="absolute -left-[0px] top-[50px] bg-black h-screen pt-8 transform transition-all duration-300 origin-left" :class="{ '-translate-x-40': !menuOpen, block: menuOpen }">
                     <ul class="flex flex-col justify-start align-top">
-                        <li class="h-12 w-36"><NuxtLink to="/" class="block h-12 w-36 text-start py-2 px-4">Home</NuxtLink></li>
-                        <li class="h-12 w-36"><NuxtLink to="/about" class="block h-12 w-36 text-start py-2 px-4">Sobre mí</NuxtLink></li>
-                        <li class="h-12 w-36"><NuxtLink to="/portfolio" class="block h-12 w-36 text-start py-2 px-4">Portfolio</NuxtLink></li>
-                        <li class="h-12 w-36"><NuxtLink to="/galeria" class="block h-12 w-36 text-start py-2 px-4">Galería</NuxtLink></li>
-                        <li class="h-12 w-36"><NuxtLink to="/servicios" class="block h-12 w-36 text-start py-2 px-4">Servicios</NuxtLink></li>
-                        <li class="h-12 w-36"><NuxtLink to="/contacto" class="block h-12 w-36 text-start py-2 px-4">Contacto</NuxtLink></li>
+                        <li class="h-12 w-36"><NuxtLink to="/" class="block h-12 w-36 text-start py-2 px-4" @click="toggleMenu">Home</NuxtLink></li>
+                        <li class="h-12 w-36"><NuxtLink to="/about" class="block h-12 w-36 text-start py-2 px-4" @click="toggleMenu">Sobre mí</NuxtLink></li>
+                        <li class="h-12 w-36"><NuxtLink to="/portfolio" class="block h-12 w-36 text-start py-2 px-4" @click="toggleMenu">Portfolio</NuxtLink></li>
+                        <li class="h-12 w-36"><NuxtLink to="/galeria" class="block h-12 w-36 text-start py-2 px-4" @click="toggleMenu">Galería</NuxtLink></li>
+                        <li class="h-12 w-36"><NuxtLink to="/servicios" class="block h-12 w-36 text-start py-2 px-4" @click="toggleMenu">Servicios</NuxtLink></li>
+                        <li class="h-12 w-36"><NuxtLink to="/contacto" class="block h-12 w-36 text-start py-2 px-4" @click="toggleMenu">Contacto</NuxtLink></li>
                     </ul>
                     <div class="flex flex-col">
                         <img id="instagram" src="@/assets/icons/instagram.svg" alt="instagram" class="p-2 w-12 cursor-pointer" @click="handelGoTo" />
@@ -80,10 +80,13 @@ export default {
         handelGoTo(event) {
             if (event.target.id === "instagram") {
                 window.open("https://www.instagram.com");
+                this.toggleMenu();
             } else if (event.target.id === "facebook") {
                 window.open("https://www.facebook.com");
+                this.toggleMenu();
             } else if (event.target.id === "whatsapp") {
                 window.open("https://wa.me/5492216387605");
+                this.toggleMenu();
             }
         },
     },
