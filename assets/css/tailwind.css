@@ -100,3 +100,46 @@ textarea {
     @apply cursor-pointer;
     @apply rounded;
 }
+
+/* Carousel */
+.carousel__item {
+    max-height: 120px !important;
+    width: 100%;
+    background-color: var(--vc-clr-primary);
+    color: var(--vc-clr-white);
+    font-size: 20px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel__slide {
+    padding: 10px;
+}
+
+.carousel__prev,
+.carousel__next {
+    color: white !important;
+}
+
+.carousel__pagination-item {
+    background-color: var(--vc-clr-primary);
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.carousel__pagination-button::after {
+    display: block;
+    content: "";
+    width: var(--vc-pgn-width);
+    height: var(--vc-pgn-height);
+    border-radius: var(--vc-pgn-border-radius);
+    background-color: white !important;
+}
